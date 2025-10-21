@@ -29,7 +29,7 @@ This system enhances diagnostic precision, reduces clinician workload, and suppo
 
 ###  Clone the repository
 ```bash
-git clone https://github.com/<your-username>/ctg-ml-active-sampling.git
+git clone https://github.com/Bhu1-Krishna0404/ctg-ml-active-sampling.git
 cd ctg-ml-active-sampling
 
 
