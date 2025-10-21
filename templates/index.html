@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fetal Health Assessment</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+  <div class="flex min-h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-md">
+      <div class="flex items-center px-6 py-4 text-blue-700 text-2xl font-bold">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 8c1.657 0 3-1.343 3-3S13.657 2 12 2 9 3.343 9 5s1.343 3 3 3zM4 22c0-4 4-7 8-7s8 3 8 7" />
+        </svg>
+        FetalPulse
+      </div>
+      <nav class="px-6 py-4 space-y-2 text-gray-700">
+        <a href="{{ url_for('home') }}" class="block hover:text-blue-700">Home</a>
+        <a href="{{ url_for('index') }}" class="text-blue-600 font-semibold border-b-2 border-blue-600">Prediction</a>
+        <a href="{{ url_for('logout') }}" class="block text-red-700 hover:underline">Logout</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-8">
+      <h1 class="text-3xl font-bold text-gray-800 mb-1">Fetal Health Assessment</h1>
+      <p class="text-gray-500 mb-6">Enter the patient's cardiotocography data below to predict fetal health risk.</p>
+
+      <form method="POST" action="{{ url_for('index') }}">
+        <!-- Card 1: CTG Metrics -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h2 class="text-xl font-bold mb-1">CTG Metrics</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div><label class="text-sm font-medium">Baseline FHR (bpm)</label><input name="baseline_value" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Accelerations</label><input name="accelerations" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Fetal Movement</label><input name="fetal_movement" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Uterine Contractions</label><input name="uterine_contractions" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Light Decelerations</label><input name="light_decelerations" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Severe Decelerations</label><input name="severe_decelerations" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Prolonged Decelerations</label><input name="prolongued_decelerations" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+          </div>
+        </div>
+
+        <!-- Card 2: FHR Variability -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+          <h2 class="text-xl font-bold mb-1">FHR Variability</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div><label class="text-sm font-medium">Abnormal Short-Term Variability</label><input name="abnormal_short_term_variability" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Mean Short-Term Variability</label><input name="mean_value_of_short_term_variability" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Abnormal Long-Term Variability</label><input name="percentage_of_time_with_abnormal_long_term_variability" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Mean Long-Term Variability</label><input name="mean_value_of_long_term_variability" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+          </div>
+        </div>
+
+        <!-- Card 3: FHR Histogram -->
+        <div class="bg-white p-6 rounded-lg shadow">
+          <h2 class="text-xl font-bold mb-1">FHR Histogram</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div><label class="text-sm font-medium">Histogram Width</label><input name="histogram_width" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Min</label><input name="histogram_min" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Max</label><input name="histogram_max" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Number of Peaks</label><input name="histogram_number_of_peaks" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Number of Zeroes</label><input name="histogram_number_of_zeroes" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Mode</label><input name="histogram_mode" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Mean</label><input name="histogram_mean" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Median</label><input name="histogram_median" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Variance</label><input name="histogram_variance" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+            <div><label class="text-sm font-medium">Histogram Tendency</label><input name="histogram_tendency" class="mt-1 w-full p-2 border border-gray-300 rounded bg-gray-100" /></div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex justify-end mt-6">
+          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow">
+            Analysis & Predict
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+
+</html>

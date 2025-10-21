@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Performance - Fetal Monitor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen font-sans">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow-md">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 8c1.657 0 3-1.343 3-3S13.657 2 12 2 9 3.343 9 5s1.343 3 3 3zM4 22c0-4 4-7 8-7s8 3 8 7" />
+        </svg>
+        <span class="text-xl font-bold text-blue-700">Fetal Monitor</span>
+      </div>
+      <div class="space-x-6 text-gray-600 font-medium">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <a href="/performance" class="text-blue-600 font-semibold border-b-2 border-blue-600">Performance</a>
+        <a href="/chart" class="hover:text-blue-600">Charts</a>
+        <a href="/logout" class="text-red-500 hover:underline">Logout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Performance Section -->
+  <div class="max-w-5xl mx-auto mt-14 px-4">
+    <h2 class="text-3xl font-bold text-gray-800 mb-2">Model Performance</h2>
+    <p class="text-gray-600 mb-10">Detailed analysis of the XGBoost model's classification performance</p>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Card Template -->
+      <div class="bg-white rounded-xl shadow-xl transform hover:scale-[1.02] transition-all duration-300 p-4 flex justify-between items-center w-half h-24">
+        <div class="flex items-center space-x-3">
+          <div class="bg-green-100 p-2 rounded-lg">
+            <svg class="h-5 w-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-lg font-bold text-gray-800">96%</p>
+            <p class="text-gray-500 text-sm">Accuracy</p>
+          </div>
+        </div>
+        <p class="text-green-500 font-semibold text-sm">+2.1%</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-xl transform hover:scale-[1.02] transition-all duration-300 p-4 flex justify-between items-center w-full h-24">
+        <div class="flex items-center space-x-3">
+          <div class="bg-blue-100 p-2 rounded-lg">
+            <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12h16M4 12l6 6m-6-6l6-6" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-lg font-bold text-gray-800">94%</p>
+            <p class="text-gray-500 text-sm">macro avg</p>
+          </div>
+        </div>
+        <p class="text-green-500 font-semibold text-sm">+1.5%</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-xl transform hover:scale-[1.02] transition-all duration-300 p-4 flex justify-between items-center w-full h-24">
+        <div class="flex items-center space-x-3">
+          <div class="bg-purple-100 p-2 rounded-lg">
+            <svg class="h-5 w-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-lg font-bold text-gray-800">96%</p>
+            <p class="text-gray-500 text-sm">weighted avg</p>
+          </div>
+        </div>
+        <p class="text-green-500 font-semibold text-sm">+0.8%</p>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-xl transform hover:scale-[1.02] transition-all duration-300 p-4 flex justify-between items-center w-full h-24">
+        <div class="flex items-center space-x-3">
+          <div class="bg-orange-100 p-2 rounded-lg">
+            <svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 17a4 4 0 110-8 4 4 0 010 8z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-lg font-bold text-gray-800">94%</p>
+            <p class="text-gray-500 text-sm">Precision</p>
+          </div>
+        </div>
+        <p class="text-green-500 font-semibold text-sm">+1.2%</p>
+      </div>
+    </div>
+
+    <!-- Accuracy Comparison Card -->
+    <div class="bg-white rounded-xl shadow-xl transform hover:scale-[1.01] transition-all duration-300 mt-10 p-6">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6">Accuracy Comparison</h3>
+      <div class="w-full md:w-1/2 mx-auto">
+        <canvas id="accuracyChart" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart Script -->
+  <script>
+    const ctx = document.getElementById('accuracyChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Random Forest', 'XGBoost'],
+        datasets: [{
+          label: 'Accuracy (%)',
+          data: [93, 96],
+          backgroundColor: ['#f87171', '#60a5fa'],
+          borderColor: ['#ef4444', '#3b82f6'],
+          borderWidth: 4,
+          borderRadius: 5,
+          barThickness: 40,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              stepSize: 10
+            }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: true }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
